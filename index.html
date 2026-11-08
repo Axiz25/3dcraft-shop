@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Craft - Boutique & Impression 3D Tunisie</title>
+  <link rel="icon" href="assets/icon.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" onclick="showHome(); return false;" class="nav-brand">
+        <img src="assets/icon.jpg" alt="3D Craft">
+        <div class="brand-name">3D <span>Craft</span><span class="brand-sub">3D Print</span></div>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#" onclick="showHome(); return false;" id="navHome" class="active">Accueil</a>
+        <div class="nav-dropdown">
+          <a href="#categories" class="dropdown-toggle">Catégories</a>
+          <div class="dropdown-menu">
+            <a href="#home-decor" onclick="showCategory('home-decor')">🏠 Décoration Maison</a>
+            <a href="#gaming" onclick="showCategory('gaming')">🎮 Gaming Setup</a>
+            <a href="#anime" onclick="showCategory('anime')">⚔️ Anime & Figurines</a>
+            <a href="#toys" onclick="showCategory('toys')">🧸 Jouets & Gadgets</a>
+            <a href="#accessories" onclick="showCategory('accessories')">🎧 Accessoires Bureau</a>
+          </div>
+        </div>
+        <a href="#services" onclick="showHome(); setTimeout(()=>location.hash='services', 50)">Services</a>
+        <a href="#contact" onclick="showHome(); setTimeout(()=>location.hash='contact', 50)">Contact</a>
+      </div>
+      <div class="nav-hamburger" id="hamburger" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HOME VIEW -->
+  <main id="homeView">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge"><span class="pulse-dot"></span> Commandes sur mesure disponibles</div>
+          <h1>Vos Idées, <span>Imprimées en 3D</span> avec Précision</h1>
+          <p>Boutique d'objets uniques et service de fabrication additive en Tunisie : déco, gaming, figurines anime, prototypes et créations sur mesure.</p>
+          <div class="hero-buttons">
+            <a href="#categories" class="btn btn-primary">🛒 Découvrir le Shop</a>
+            <a href="#services" class="btn btn-outline">Nos Services</a>
+          </div>
+          <div class="hero-stats">
+            <div><div class="stat-num" id="statTotalProds">12+</div><div class="stat-lbl">Produits</div></div>
+            <div><div class="stat-num">5</div><div class="stat-lbl">Catégories</div></div>
+            <div><div class="stat-num">100%</div><div class="stat-lbl">Sur Mesure</div></div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-logo-box">
+            <img src="assets/icon.jpg" alt="3D Craft Logo">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES SECTION -->
+    <section class="categories-section" id="categories">
+      <div class="container">
+        <h2 class="section-title">Nos <span>Catégories</span></h2>
+        <p class="section-subtitle">Chaque univers a sa page dédiée avec tous ses articles</p>
+        <div class="categories-grid">
+          <div class="category-card" onclick="showCategory('home-decor')">
+            <span class="category-icon">🏠</span>
+            <h3>Décoration Maison</h3>
+            <p>Vases géométriques, lampes et serre-livres</p>
+            <span class="category-count" id="count-home-decor">...</span>
+          </div>
+          <div class="category-card" onclick="showCategory('gaming')">
+            <span class="category-icon">🎮</span>
+            <h3>Gaming Setup</h3>
+            <p>Supports de manettes, casques et keycaps</p>
+            <span class="category-count" id="count-gaming">...</span>
+          </div>
+          <div class="category-card" onclick="showCategory('anime')">
+            <span class="category-icon">⚔️</span>
+            <h3>Anime & Figurines</h3>
+            <p>Statues de personnages et objets de collection</p>
+            <span class="category-count" id="count-anime">...</span>
+          </div>
+          <div class="category-card" onclick="showCategory('toys')">
+            <span class="category-icon">🧸</span>
+            <h3>Jouets & Gadgets</h3>
+            <p>Créations articulées, flexi-rex et puzzles</p>
+            <span class="category-count" id="count-toys">...</span>
+          </div>
+          <div class="category-card" onclick="showCategory('accessories')">
+            <span class="category-icon">🎧</span>
+            <h3>Accessoires</h3>
+            <p>Supports smartphones, range-câbles et utilitaires</p>
+            <span class="category-count" id="count-accessories">...</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="products-section" id="featuredSection">
+      <div class="container">
+        <h2 class="section-title">Créations <span>Populaires</span></h2>
+        <p class="section-subtitle">Les coups de cœur de nos clients prêts à commander</p>
+        <div class="products-grid" id="featuredGrid"></div>
+      </div>
+    </section>
+
+    <!-- SERVICES SECTION WITH BACKGROUND IMAGES -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <h2 class="section-title">Nos <span>Services</span></h2>
+        <p class="section-subtitle">Solutions complètes de prototypage et fabrication additive</p>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-img-wrap">
+              <img src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?w=600&q=80" alt="Impression 3D">
+              <div class="service-icon-badge">🖨️</div>
+            </div>
+            <div class="service-content">
+              <h3>Impression 3D FDM & Résine</h3>
+              <p>Envoyez-nous vos fichiers STL/OBJ ou vos idées. Impression haute précision en PLA, PETG, ABS ou résine haute définition.</p>
+              <a href="https://wa.me/21600000000?text=Bonjour,%20je%20souhaite%20un%20devis%20pour%20une%20impression%203D" target="_blank" class="service-link">Demander un devis →</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-img-wrap">
+              <img src="https://images.unsplash.com/photo-1617802690992-15d93263d3a9?w=600&q=80" alt="Modélisation 3D">
+              <div class="service-icon-badge">🎨</div>
+            </div>
+            <div class="service-content">
+              <h3>Modélisation & Conception CAD</h3>
+              <p>Vous n'avez pas de modèle 3D ? Nous concevons votre projet d'après un croquis, des cotes ou une simple photo.</p>
+              <a href="https://wa.me/21600000000?text=Bonjour,%20j'ai%20besoin%20d'une%20modélisation%203D" target="_blank" class="service-link">Consulter nos designers →</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-img-wrap">
+              <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&q=80" alt="Prototypage">
+              <div class="service-icon-badge">📐</div>
+            </div>
+            <div class="service-content">
+              <h3>Prototypage Rapide</h3>
+              <p>Idéal pour les startups et créateurs de produits : validez vos pièces mécaniques et designs en 24h à 48h.</p>
+              <a href="https://wa.me/21600000000?text=Bonjour,%20projet%20de%20prototypage%20rapide" target="_blank" class="service-link">Lancer un prototype →</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-img-wrap">
+              <img src="https://images.unsplash.com/photo-1563520240344-52b067aa5f84?w=600&q=80" alt="Scan 3D">
+              <div class="service-icon-badge">📷</div>
+            </div>
+            <div class="service-content">
+              <h3>Scan 3D & Rétro-conception</h3>
+              <p>Numérisez un objet physique réel pour le reproduire à l'identique, le réparer ou l'adapter à un nouvel usage.</p>
+              <a href="https://wa.me/21600000000?text=Bonjour,%20je%20souhaite%20scanner%20une%20pièce" target="_blank" class="service-link">En savoir plus →</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-img-wrap">
+              <img src="https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=600&q=80" alt="Série">
+              <div class="service-icon-badge">🏭</div>
+            </div>
+            <div class="service-content">
+              <h3>Petites Séries & Fabrication</h3>
+              <p>Production en petite et moyenne série pour entreprises, goodies, événements et pièces détachées sans frais de moule.</p>
+              <a href="https://wa.me/21600000000?text=Bonjour,%20devis%20petite%20série%203D" target="_blank" class="service-link">Tarifs entreprise →</a>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-img-wrap">
+              <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=600&q=80" alt="Cadeaux personnalisés">
+              <div class="service-icon-badge">🎁</div>
+            </div>
+            <div class="service-content">
+              <h3>Cadeaux & Goodies Personnalisés</h3>
+              <p>Lithophanies personnalisées, porte-clés prénom, trophées sur mesure et décors uniques pour toutes occasions.</p>
+              <a href="https://wa.me/21600000000?text=Bonjour,%20cadeau%20personnalisé%203D" target="_blank" class="service-link">Commander un cadeau →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+      <div class="container">
+        <h2>Un Projet ou <span>Une Idée Spéciale</span> ?</h2>
+        <p>Partagez votre projet directement avec notre atelier par WhatsApp et obtenez un devis rapide.</p>
+        <a href="https://wa.me/21600000000?text=Bonjour%203D%20Craft,%20j'ai%20une%20idée%20de%20création%203D%20!" target="_blank" class="btn btn-primary">
+          💬 Discuter sur WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- CATEGORY DEDICATED VIEW -->
+  <main id="categoryView" style="display:none;">
+    <section class="cat-header">
+      <div class="container">
+        <div class="cat-breadcrumb">
+          <a href="#" onclick="showHome(); return false;">Accueil</a>
+          <span>›</span>
+          <span class="current" id="catBreadcrumbTitle">Catégorie</span>
+        </div>
+        <span class="cat-icon-large" id="catIcon">🏠</span>
+        <h1 class="section-title" id="catTitle">Titre <span>Catégorie</span></h1>
+        <p class="section-subtitle" id="catDesc" style="margin-bottom:0;">Description de la catégorie</p>
+      </div>
+    </section>
+
+    <section class="products-section">
+      <div class="container">
+        <div class="cat-filter-bar">
+          <div style="font-weight:700; color:var(--text-muted);">
+            <span id="catResultsCount" style="color:var(--primary); font-size:1.1rem;">0</span> articles disponibles
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="filter-btn active" onclick="applyFilter('all', this)">Tous</button>
+            <button class="filter-btn" onclick="applyFilter('new', this)">✨ Nouveautés</button>
+            <button class="filter-btn" onclick="applyFilter('popular', this)">⭐ Populaires</button>
+            <button class="filter-btn" onclick="applyFilter('sale', this)">🔥 Promos</button>
+          </div>
+        </div>
+        <div class="products-grid" id="catProductsGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-name">3D <span>Craft</span><span class="brand-sub">3D Print</span></div>
+          <p>Votre atelier spécialisé en impression 3D, modélisation et fabrication personnalisée en Tunisie. Qualité supérieure, finitions soignées et livraison rapide.</p>
+          <div class="social-row">
+            <a href="#" title="Facebook">📘</a>
+            <a href="#" title="Instagram">📸</a>
+            <a href="#" title="TikTok">🎵</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Catégories</h4>
+          <a href="#home-decor" onclick="showCategory('home-decor')">Décoration Maison</a>
+          <a href="#gaming" onclick="showCategory('gaming')">Gaming Setup</a>
+          <a href="#anime" onclick="showCategory('anime')">Anime & Figurines</a>
+          <a href="#toys" onclick="showCategory('toys')">Jouets & Gadgets</a>
+          <a href="#accessories" onclick="showCategory('accessories')">Accessoires</a>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <a href="#services">Impression 3D</a>
+          <a href="#services">Modélisation CAD</a>
+          <a href="#services">Prototypage</a>
+          <a href="#services">Petites Séries</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact & Atelier</h4>
+          <div class="footer-contact">📍 Tunis, Tunisie</div>
+          <div class="footer-contact">📞 +216 00 000 000</div>
+          <div class="footer-contact">💬 WhatsApp direct</div>
+          <div class="footer-contact">⏰ Lun-Sam : 9h00 - 19h00</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 3D <span>Craft</span>. Tous droits réservés.</p>
+        <p>Créé avec 💚 pour la communauté 3D</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/21600000000" target="_blank" class="wa-float" title="Commander sur WhatsApp">💬</a>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+  <script>
+    let activeCat = null;
+    let activeFilter = 'all';
+
+    function toggleNav(){
+      document.getElementById('hamburger').classList.toggle('active');
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    function showHome(){
+      activeCat = null;
+      document.getElementById('homeView').style.display = 'block';
+      document.getElementById('categoryView').style.display = 'none';
+      document.getElementById('navHome').classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+      loadHome();
+    }
+
+    function showCategory(slug){
+      if(!CATS[slug]) return;
+      activeCat = slug;
+      activeFilter = 'all';
+      document.getElementById('hamburger').classList.remove('active');
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('homeView').style.display = 'none';
+      document.getElementById('categoryView').style.display = 'block';
+      document.getElementById('navHome').classList.remove('active');
+
+      const c = CATS[slug];
+      document.getElementById('catBreadcrumbTitle').textContent = c.name;
+      document.getElementById('catIcon').textContent = c.icon;
+      document.getElementById('catTitle').innerHTML = `${c.name.split(' ')[0]} <span>${c.name.split(' ').slice(1).join(' ')||''}</span>`;
+      document.getElementById('catDesc').textContent = c.desc;
+
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.textContent.includes('Tous')));
+      renderCategoryProducts();
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    function renderCategoryProducts(){
+      let items = Store.byCat(activeCat);
+      if(activeFilter !== 'all'){
+        items = items.filter(p => p.badge === activeFilter);
+      }
+      document.getElementById('catResultsCount').textContent = items.length;
+      const grid = document.getElementById('catProductsGrid');
+      if(items.length === 0){
+        grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text-muted);"><h3>Aucun article trouvé</h3><p>Revenez bientôt ou demandez une impression sur mesure !</p></div>';
+      } else {
+        grid.innerHTML = items.map((p, i) => cardHTML(p, i)).join('');
+      }
+    }
+
+    function applyFilter(f, btn){
+      activeFilter = f;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCategoryProducts();
+    }
+
+    function loadHome(){
+      const all = Store.getAll();
+      document.getElementById('statTotalProds').textContent = all.length + '+';
+      Object.keys(CATS).forEach(k => {
+        const count = all.filter(p => p.category === k).length;
+        const el = document.getElementById('count-' + k);
+        if(el) el.textContent = `${count} article${count>1?'s':''}`;
+      });
+      const feat = all.filter(p => p.featured);
+      document.getElementById('featuredGrid').innerHTML = feat.map((p, i) => cardHTML(p, i)).join('');
+    }
+
+    window.addEventListener('hashchange', () => {
+      const h = location.hash.replace('#','');
+      if(CATS[h]) showCategory(h);
+      else if(h === 'categories') { showHome(); setTimeout(()=>location.hash='categories', 10); }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const h = location.hash.replace('#','');
+      if(CATS[h]) showCategory(h);
+      else loadHome();
+    });
+  </script>
+</body>
+</html>
