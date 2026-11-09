@@ -101,7 +101,7 @@ function getEmoji(cat, i = 0) {
 
 function orderWA(n, p) {
   const msg = encodeURIComponent(`Bonjour 3D Craft! 👋\nJe souhaite commander:\n📦 Produit: ${n}\n💰 Prix: ${p} TND\n\nMerci de me confirmer la disponibilité.`);
-  window.open(`https://wa.me/21600000000?text=${msg}`, '_blank');
+  window.open(`https://wa.me/21646595833?text=${msg}`, '_blank');
 }
 
 function toast(m) {
