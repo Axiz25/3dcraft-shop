@@ -50,13 +50,16 @@
       <!-- TOP BAR -->
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; flex-wrap:wrap; gap:14px;">
         <div>
-          <h1 style="font-size:1.8rem; font-weight:900;">Gestionnaire <span>Produits & Prix</span></h1>
-          <p style="color:var(--text-muted); font-size:.92rem;">Ajoutez, modifiez ou supprimez des articles en temps réel</p>
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+            <h1 style="font-size:1.8rem; font-weight:900; margin:0;">Gestionnaire <span>Produits & Prix</span></h1>
+            <span id="syncStatusBadge" style="padding:5px 12px; border-radius:50px; font-size:.8rem; font-weight:700; background:var(--primary-soft); color:var(--primary);">🟢 En direct sur le Web (Synchronisé)</span>
+          </div>
+          <p style="color:var(--text-muted); font-size:.92rem; margin:0;">Toute modification est automatiquement enregistrée et visible pour tous vos clients</p>
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button class="btn btn-primary btn-sm" id="publishBtn" onclick="publishToGitHub()" style="background:#2e7d32; color:#fff; font-weight:800; box-shadow:0 4px 12px rgba(46,125,50,.3);">🚀 Publier sur le site Web</button>
-          <button class="btn btn-dark btn-sm" onclick="exportJSON()">📥 Exporter Données</button>
-          <button class="btn btn-dark btn-sm" onclick="importJSON()">📤 Importer Données</button>
+          <button class="btn btn-primary btn-sm" id="publishBtn" onclick="autoSyncToGitHub(true)" style="background:#2e7d32; color:#fff; font-weight:800; box-shadow:0 4px 12px rgba(46,125,50,.3);">🔄 Forcer la Synchronisation</button>
+          <button class="btn btn-dark btn-sm" onclick="exportJSON()">📥 Exporter</button>
+          <button class="btn btn-dark btn-sm" onclick="importJSON()">📤 Importer</button>
         </div>
       </div>
 
@@ -179,10 +182,12 @@
       }
     }
 
-    function unlock(){
+    async function unlock(){
       document.getElementById('loginWrap').style.display = 'none';
       document.getElementById('dashWrap').style.display = 'block';
       document.getElementById('adminNav').style.display = 'flex';
+      renderDashboard();
+      await Store.loadRemote();
       renderDashboard();
     }
 
@@ -240,6 +245,7 @@
       }
       cancelEdit();
       renderDashboard();
+      autoSyncToGitHub();
     }
 
     function editProduct(id){
@@ -272,6 +278,7 @@
         Store.delete(id);
         toast('Article supprimé ! 🗑️');
         renderDashboard();
+        autoSyncToGitHub();
       }
     }
 
@@ -300,6 +307,7 @@
               Store.save(arr);
               renderDashboard();
               toast(`${arr.length} articles importés ! 📤`);
+              autoSyncToGitHub();
             }
           } catch(err){
             alert('Format de fichier invalide');
@@ -310,19 +318,15 @@
       inp.click();
     }
 
-    async function publishToGitHub(){
-      let token = localStorage.getItem('3dcraft_gh_token');
-      if (!token) {
-        token = prompt("Pour publier en direct sur le web, entrez votre GitHub Token (ex: ghp_...) :");
-        if (!token) return;
-        token = token.trim();
-        localStorage.setItem('3dcraft_gh_token', token);
-      }
+    const GH_TOKEN = localStorage.getItem('3dcraft_gh_token') || '';
 
-      const btn = document.getElementById('publishBtn');
-      const originalText = btn.innerHTML;
-      btn.disabled = true;
-      btn.innerHTML = '⏳ Publication vers GitHub...';
+    async function autoSyncToGitHub(manual = false){
+      const badge = document.getElementById('syncStatusBadge');
+      if(badge){
+        badge.innerHTML = '⏳ Synchronisation en direct...';
+        badge.style.background = '#fff3e0';
+        badge.style.color = '#e65100';
+      }
 
       try {
         const products = Store.getAll();
@@ -334,50 +338,58 @@
         try {
           const getRes = await fetch('https://api.github.com/repos/Axiz25/3dcraft-shop/contents/data/products.json', {
             headers: {
-              'Authorization': 'token ' + token,
+              'Authorization': 'token ' + GH_TOKEN,
               'Accept': 'application/vnd.github.v3+json'
             }
           });
-          if (getRes.ok) {
+          if(getRes.ok){
             const getData = await getRes.json();
             sha = getData.sha;
           }
-        } catch(err) {
+        } catch(err){
           console.warn('SHA fetch:', err);
         }
 
-        // 2. Commit file to GitHub
+        // 2. Put file to GitHub
         const putRes = await fetch('https://api.github.com/repos/Axiz25/3dcraft-shop/contents/data/products.json', {
           method: 'PUT',
           headers: {
-            'Authorization': 'token ' + token,
+            'Authorization': 'token ' + GH_TOKEN,
             'Content-Type': 'application/json',
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'Mise à jour du catalogue produits via Admin',
+            message: 'Mise à jour automatique catalogue 3D Craft',
             content: contentBase64,
             sha: sha || undefined
           })
         });
 
-        if (putRes.ok) {
-          toast('✅ Catalogue synchronisé avec GitHub ! 🎉');
-          alert('🎉 SUCCÈS !\n\nVos modifications sont envoyées vers votre dépôt GitHub !\nGitHub Pages met à jour le site en ~30 à 60 secondes.\n\nVotre ami et tous vos clients verront immédiatement les nouveaux produits et prix sur leur téléphone.');
+        if(putRes.ok){
+          if(badge){
+            badge.innerHTML = '🟢 En direct sur le Web (Synchronisé)';
+            badge.style.background = 'var(--primary-soft)';
+            badge.style.color = 'var(--primary)';
+          }
+          toast('✅ En direct sur le Web ! 🌐');
+          if(manual){
+            alert('🎉 Vos produits et prix sont synchronisés en direct sur le Web !\nVotre ami peut actualiser sa page pour les voir.');
+          }
         } else {
-          const errData = await putRes.json().catch(() => ({}));
-          if (putRes.status === 401) {
-            localStorage.removeItem('3dcraft_gh_token');
-            alert('❌ Token GitHub invalide ou expiré. Veuillez cliquer à nouveau sur Publier pour saisir un token valide.');
-          } else {
-            alert('❌ Erreur (' + putRes.status + ') : ' + (errData.message || 'Impossible de publier sur GitHub'));
+          console.error('Erreur GitHub sync', putRes.status);
+          if(badge){
+            badge.innerHTML = '⚠️ Erreur synchro (' + putRes.status + ')';
+            badge.style.background = '#ffebee';
+            badge.style.color = '#c62828';
           }
         }
-      } catch(e) {
-        alert('❌ Erreur réseau : ' + e.message);
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = originalText;
+      } catch(e){
+        console.error('Network sync error', e);
+        if(badge){
+          badge.innerHTML = '⚠️ Erreur réseau';
+          badge.style.background = '#ffebee';
+          badge.style.color = '#c62828';
+        }
       }
     }
 
