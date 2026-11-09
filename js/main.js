@@ -223,6 +223,24 @@ const Categories = {
     icon: '🎧',
     description: 'Practical and stylish everyday accessories',
     page: 'pages/accessories.html'
+  },
+  'tools': {
+    name: 'Tools & DIY',
+    icon: '🔧',
+    description: 'Practical workshop organizers, jigs and measurement gauges',
+    page: 'pages/tools.html'
+  },
+  'gifts': {
+    name: 'Gifts & Specials',
+    icon: '🎁',
+    description: 'Personalized lithophanes, cryptex and unique surprise gifts',
+    page: 'pages/gifts.html'
+  },
+  'keychains': {
+    name: 'Custom Keychains',
+    icon: '🔑',
+    description: 'Custom name, car logo and Spotify scannable keychains',
+    page: 'pages/keychains.html'
   }
 };
 
@@ -234,7 +252,10 @@ const CategoryEmojis = {
   'gaming': ['🎮', '🕹️', '🎯', '🏆', '⌨️', '🖱️'],
   'anime': ['⚔️', '🗡️', '🛡️', '🎭', '🌸', '🐉'],
   'toys': ['🧸', '🤖', '🦕', '🚀', '🎪', '🎨'],
-  'accessories': ['🎧', '📱', '⌚', '💼', '🔑', '🧲']
+  'accessories': ['🎧', '📱', '⌚', '💼', '🧲', '📎'],
+  'tools': ['🔧', '🛠️', '📐', '⚙️', '📏', '🗜️'],
+  'gifts': ['🎁', '💝', '✨', '🎀', '💎', '🎉'],
+  'keychains': ['🔑', '🏷️', '🚗', '🎵', '🏍️', '🔖']
 };
 
 // ==========================================
