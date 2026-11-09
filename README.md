@@ -21,6 +21,9 @@ Chaque catégorie possède sa propre vue et sa propre page avec filtres dynamiqu
 3. ⚔️ **Anime & Figurines** (`pages/anime.html` & `#anime`) : Statuettes haute définition, personnages chibi, répliques d'épées.
 4. 🧸 **Jouets & Gadgets** (`pages/toys.html` & `#toys`) : Figurines articulées print-in-place, dinosaures flexibles, puzzles 3D.
 5. 🎧 **Accessoires de Bureau** (`pages/accessories.html` & `#accessories`) : Supports de téléphones, organisateurs de câbles magnétiques, ranges-stylos.
+6. 🔧 **Outils & Atelier** (`pages/tools.html` & `#tools`) : Rangements d'embouts, gabarits et calibres de précision.
+7. 🎁 **Idées Cadeaux** (`pages/gifts.html` & `#gifts`) : Lithophanies personnalisées, boîtes cryptex et surprises 3D.
+8. 🔑 **Porte-clés Custom** (`pages/keychains.html` & `#keychains`) : Prénoms bicolores, emblèmes de voitures et codes Spotify.
 
 ### 🔐 3. Espace Admin Secret (Gestion Produits & Prix)
 - **Totalement invisible du public** : Aucun lien dans la navigation du site pour garantir une discrétion absolue.
@@ -61,6 +64,9 @@ Chaque catégorie possède sa propre vue et sa propre page avec filtres dynamiqu
     ├── anime.html        # Page dédiée Anime & Figurines
     ├── toys.html         # Page dédiée Jouets & Gadgets
     ├── accessories.html  # Page dédiée Accessoires
+    ├── tools.html        # Page dédiée Outils & Bricolage
+    ├── gifts.html        # Page dédiée Idées Cadeaux
+    ├── keychains.html    # Page dédiée Porte-clés Custom
     └── admin.html        # Version alternative du dashboard secret
 ```
 
