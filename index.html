@@ -27,6 +27,9 @@
             <a href="#anime" onclick="showCategory('anime')">⚔️ Anime & Figurines</a>
             <a href="#toys" onclick="showCategory('toys')">🧸 Jouets & Gadgets</a>
             <a href="#accessories" onclick="showCategory('accessories')">🎧 Accessoires Bureau</a>
+            <a href="#tools" onclick="showCategory('tools')">🔧 Outils & Atelier</a>
+            <a href="#gifts" onclick="showCategory('gifts')">🎁 Idées Cadeaux</a>
+            <a href="#keychains" onclick="showCategory('keychains')">🔑 Porte-clés Custom</a>
           </div>
         </div>
         <a href="#services" onclick="showHome(); setTimeout(()=>location.hash='services', 50)">Services</a>
@@ -52,8 +55,8 @@
             <a href="#services" class="btn btn-outline">Nos Services</a>
           </div>
           <div class="hero-stats">
-            <div><div class="stat-num" id="statTotalProds">12+</div><div class="stat-lbl">Produits</div></div>
-            <div><div class="stat-num">5</div><div class="stat-lbl">Catégories</div></div>
+            <div><div class="stat-num" id="statTotalProds">19+</div><div class="stat-lbl">Produits</div></div>
+            <div><div class="stat-num">8</div><div class="stat-lbl">Catégories</div></div>
             <div><div class="stat-num">100%</div><div class="stat-lbl">Sur Mesure</div></div>
           </div>
         </div>
@@ -100,6 +103,24 @@
             <h3>Accessoires</h3>
             <p>Supports smartphones, range-câbles et utilitaires</p>
             <span class="category-count" id="count-accessories">...</span>
+          </div>
+          <div class="category-card" onclick="showCategory('tools')">
+            <span class="category-icon">🔧</span>
+            <h3>Outils & Atelier</h3>
+            <p>Rangements d'embouts, gabarits et calibres 3D</p>
+            <span class="category-count" id="count-tools">...</span>
+          </div>
+          <div class="category-card" onclick="showCategory('gifts')">
+            <span class="category-icon">🎁</span>
+            <h3>Idées Cadeaux</h3>
+            <p>Lithophanies photo, boîtes secrètes et créations uniques</p>
+            <span class="category-count" id="count-gifts">...</span>
+          </div>
+          <div class="category-card" onclick="showCategory('keychains')">
+            <span class="category-icon">🔑</span>
+            <h3>Porte-clés Custom</h3>
+            <p>Prénoms bicolores, logos de voitures et codes Spotify</p>
+            <span class="category-count" id="count-keychains">...</span>
           </div>
         </div>
       </div>
