@@ -348,7 +348,7 @@ function renderProductsGrid(containerId, products) {
 // WhatsApp Order
 // ==========================================
 function orderProduct(name, price) {
-  const phone = '21600000000'; // Replace with actual phone number
+  const phone = '21646595833'; // WhatsApp: +216 46 595 833
   const message = encodeURIComponent(
     `Bonjour! 👋\nJe suis intéressé(e) par:\n\n📦 Produit: ${name}\n💰 Prix: ${price} TND\n\nEst-ce disponible?`
   );
