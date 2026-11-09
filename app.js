@@ -1,5 +1,20 @@
 const Store = {
   KEY: '3dcraft_products',
+  async loadRemote() {
+    try {
+      const res = await fetch('data/products.json?v=' + Date.now());
+      if (res.ok) {
+        const remote = await res.json();
+        if (Array.isArray(remote) && remote.length > 0) {
+          this.save(remote);
+          return remote;
+        }
+      }
+    } catch(e) {
+      console.log('Using local products cache');
+    }
+    return this.getAll();
+  },
   getAll() {
     const d = localStorage.getItem(this.KEY);
     if (!d) return this.init();
