@@ -131,7 +131,13 @@
     const CURRENT_CATEGORY = 'home-decor';
     let allCategoryProducts = [];
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+      allCategoryProducts = ProductStore.getByCategory(CURRENT_CATEGORY);
+      document.getElementById('productCount').textContent = allCategoryProducts.length;
+      renderProductsGrid('categoryProducts', allCategoryProducts);
+
+      // Charger les produits les plus récents depuis data/products.json
+      await ProductStore.loadRemote();
       allCategoryProducts = ProductStore.getByCategory(CURRENT_CATEGORY);
       document.getElementById('productCount').textContent = allCategoryProducts.length;
       renderProductsGrid('categoryProducts', allCategoryProducts);
