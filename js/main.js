@@ -10,9 +10,8 @@ const ProductStore = {
 
   async loadRemote() {
     try {
-      const isSub = window.location.pathname.includes('/pages/');
-      const path = (isSub ? '../' : '') + 'data/products.json?v=' + Date.now();
-      const res = await fetch(path);
+      const url = 'https://raw.githubusercontent.com/Axiz25/3dcraft-shop/main/data/products.json?t=' + Date.now();
+      const res = await fetch(url);
       if (res.ok) {
         const remote = await res.json();
         if (Array.isArray(remote) && remote.length > 0) {
