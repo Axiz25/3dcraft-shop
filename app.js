@@ -2,7 +2,8 @@ const Store = {
   KEY: '3dcraft_products',
   async loadRemote() {
     try {
-      const res = await fetch('data/products.json?v=' + Date.now());
+      const url = 'https://raw.githubusercontent.com/Axiz25/3dcraft-shop/main/data/products.json?t=' + Date.now();
+      const res = await fetch(url);
       if (res.ok) {
         const remote = await res.json();
         if (Array.isArray(remote) && remote.length > 0) {
