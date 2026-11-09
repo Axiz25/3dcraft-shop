@@ -94,7 +94,8 @@ Double-cliquez simplement sur `index.html` pour ouvrir la boutique dans votre na
 
 - **Page Admin :** `admin.html`
 - **Mot de passe :** `admin3dcraft2026`
-- **Numéro WhatsApp de commande :** Configurable dans `app.js` (`+216 00 000 000`)
+- **Numéro WhatsApp de commande :** `+216 46 595 833`
+- **Instagram :** [@3dcraft_services](https://www.instagram.com/3dcraft_services/)
 
 ---
 
