@@ -8,6 +8,24 @@
 const ProductStore = {
   STORAGE_KEY: '3dcraft_products',
 
+  async loadRemote() {
+    try {
+      const isSub = window.location.pathname.includes('/pages/');
+      const path = (isSub ? '../' : '') + 'data/products.json?v=' + Date.now();
+      const res = await fetch(path);
+      if (res.ok) {
+        const remote = await res.json();
+        if (Array.isArray(remote) && remote.length > 0) {
+          this.save(remote);
+          return remote;
+        }
+      }
+    } catch(e) {
+      console.log('Using local store fallback');
+    }
+    return this.getAll();
+  },
+
   getAll() {
     const data = localStorage.getItem(this.STORAGE_KEY);
     return data ? JSON.parse(data) : this.getDefaultProducts();
