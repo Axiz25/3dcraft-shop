@@ -251,6 +251,77 @@ function importProducts() {
   input.click();
 }
 
+async function publishToGitHub() {
+  let token = localStorage.getItem('3dcraft_gh_token');
+  if (!token) {
+    token = prompt("To publish live to GitHub, enter your GitHub Token (e.g. ghp_...):");
+    if (!token) return;
+    token = token.trim();
+    localStorage.setItem('3dcraft_gh_token', token);
+  }
+
+  const btn = document.getElementById('publishBtn');
+  const originalText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Publishing to GitHub...';
+
+  try {
+    const products = ProductStore.getAll();
+    const jsonStr = JSON.stringify(products, null, 2);
+    const contentBase64 = btoa(unescape(encodeURIComponent(jsonStr)));
+
+    // 1. Check existing SHA
+    let sha = null;
+    try {
+      const getRes = await fetch('https://api.github.com/repos/Axiz25/3dcraft-shop/contents/data/products.json', {
+        headers: {
+          'Authorization': 'token ' + token,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+      if (getRes.ok) {
+        const getData = await getRes.json();
+        sha = getData.sha;
+      }
+    } catch(err) {
+      console.warn('SHA fetch:', err);
+    }
+
+    // 2. Put file to GitHub
+    const putRes = await fetch('https://api.github.com/repos/Axiz25/3dcraft-shop/contents/data/products.json', {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'token ' + token,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify({
+        message: 'Update products catalog via Admin',
+        content: contentBase64,
+        sha: sha || undefined
+      })
+    });
+
+    if (putRes.ok) {
+      showToast('Products published to GitHub! 🎉');
+      alert('🎉 SUCCESS!\n\nYour changes are pushed to GitHub!\nGitHub Pages will update in ~30-60 seconds.\nYour friends and clients can reload and see the new products and prices.');
+    } else {
+      const errData = await putRes.json().catch(() => ({}));
+      if (putRes.status === 401) {
+        localStorage.removeItem('3dcraft_gh_token');
+        alert('❌ Invalid GitHub Token. Please click Publish again to re-enter a valid token.');
+      } else {
+        alert('❌ Error (' + putRes.status + '): ' + (errData.message || 'Failed to publish'));
+      }
+    }
+  } catch(e) {
+    alert('❌ Network error: ' + e.message);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
+}
+
 // ==========================================
 // Init Admin
 // ==========================================
