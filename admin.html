@@ -53,7 +53,8 @@
           <h1 style="font-size:1.8rem; font-weight:900;">Gestionnaire <span>Produits & Prix</span></h1>
           <p style="color:var(--text-muted); font-size:.92rem;">Ajoutez, modifiez ou supprimez des articles en temps réel</p>
         </div>
-        <div style="display:flex; gap:10px;">
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn btn-primary btn-sm" id="publishBtn" onclick="publishToGitHub()" style="background:#2e7d32; color:#fff; font-weight:800; box-shadow:0 4px 12px rgba(46,125,50,.3);">🚀 Publier sur le site Web</button>
           <button class="btn btn-dark btn-sm" onclick="exportJSON()">📥 Exporter Données</button>
           <button class="btn btn-dark btn-sm" onclick="importJSON()">📤 Importer Données</button>
         </div>
@@ -307,6 +308,77 @@
         r.readAsText(file);
       };
       inp.click();
+    }
+
+    async function publishToGitHub(){
+      let token = localStorage.getItem('3dcraft_gh_token');
+      if (!token) {
+        token = prompt("Pour publier en direct sur le web, entrez votre GitHub Token (ex: ghp_...) :");
+        if (!token) return;
+        token = token.trim();
+        localStorage.setItem('3dcraft_gh_token', token);
+      }
+
+      const btn = document.getElementById('publishBtn');
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '⏳ Publication vers GitHub...';
+
+      try {
+        const products = Store.getAll();
+        const jsonStr = JSON.stringify(products, null, 2);
+        const contentBase64 = btoa(unescape(encodeURIComponent(jsonStr)));
+
+        // 1. Check existing SHA
+        let sha = null;
+        try {
+          const getRes = await fetch('https://api.github.com/repos/Axiz25/3dcraft-shop/contents/data/products.json', {
+            headers: {
+              'Authorization': 'token ' + token,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          if (getRes.ok) {
+            const getData = await getRes.json();
+            sha = getData.sha;
+          }
+        } catch(err) {
+          console.warn('SHA fetch:', err);
+        }
+
+        // 2. Commit file to GitHub
+        const putRes = await fetch('https://api.github.com/repos/Axiz25/3dcraft-shop/contents/data/products.json', {
+          method: 'PUT',
+          headers: {
+            'Authorization': 'token ' + token,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            message: 'Mise à jour du catalogue produits via Admin',
+            content: contentBase64,
+            sha: sha || undefined
+          })
+        });
+
+        if (putRes.ok) {
+          toast('✅ Catalogue synchronisé avec GitHub ! 🎉');
+          alert('🎉 SUCCÈS !\n\nVos modifications sont envoyées vers votre dépôt GitHub !\nGitHub Pages met à jour le site en ~30 à 60 secondes.\n\nVotre ami et tous vos clients verront immédiatement les nouveaux produits et prix sur leur téléphone.');
+        } else {
+          const errData = await putRes.json().catch(() => ({}));
+          if (putRes.status === 401) {
+            localStorage.removeItem('3dcraft_gh_token');
+            alert('❌ Token GitHub invalide ou expiré. Veuillez cliquer à nouveau sur Publier pour saisir un token valide.');
+          } else {
+            alert('❌ Erreur (' + putRes.status + ') : ' + (errData.message || 'Impossible de publier sur GitHub'));
+          }
+        }
+      } catch(e) {
+        alert('❌ Erreur réseau : ' + e.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
