@@ -48,7 +48,7 @@ Chaque catégorie possède sa propre vue et sa propre page avec filtres dynamiqu
 ├── .gitignore            # Fichiers ignorés par Git
 ├── README.md             # Documentation officielle du projet
 ├── assets/
-│   ├── icon.jpg          # Logo officiel 3D Craft
+│   ├── icon.png          # Logo officiel 3D Craft
 │   └── icon.png          # Logo format PNG
 ├── css/
 │   └── style.css         # Styles modulaires pour les sous-pages
