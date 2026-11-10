@@ -1,14 +1,5 @@
 [
   {
-    "id": "19",
-    "name": "Porte-clés Code Spotify Scannable",
-    "category": "keychains",
-    "price": 14,
-    "description": "Scannez le code avec votre téléphone pour lancer votre chanson.",
-    "badge": "sale",
-    "featured": false
-  },
-  {
     "id": "1",
     "name": "Dragon Bookend Set",
     "category": "home-decor",
@@ -169,5 +160,14 @@
     "description": "Emblème automobile ou marque préférée en relief haute précision.",
     "badge": "new",
     "featured": true
+  },
+  {
+    "id": "19",
+    "name": "Porte-clés Code Spotify Scannable",
+    "category": "keychains",
+    "price": 14,
+    "description": "Scannez le code avec votre téléphone pour lancer votre chanson.",
+    "badge": "sale",
+    "featured": false
   }
 ]
