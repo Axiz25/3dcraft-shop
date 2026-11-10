@@ -1,14 +1,5 @@
 [
   {
-    "id": "3",
-    "name": "Figurine Anime Guerrier",
-    "category": "anime",
-    "price": 65,
-    "description": "Sculpture détaillée peinte avec finitions lisses.",
-    "badge": "popular",
-    "featured": true
-  },
-  {
     "id": "4",
     "name": "Robot Articulé Flexible",
     "category": "toys",
@@ -168,6 +159,15 @@
     "price": 28,
     "description": "Support universel manettes PS5, Xbox et Switch.",
     "badge": "new",
+    "featured": true
+  },
+  {
+    "id": "3",
+    "name": "Figurine Anime Guerrier",
+    "category": "anime",
+    "price": 65,
+    "description": "Sculpture détaillée peinte avec finitions lisses.",
+    "badge": "popular",
     "featured": true
   }
 ]
