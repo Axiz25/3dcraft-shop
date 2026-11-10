@@ -1,14 +1,5 @@
 [
   {
-    "id": "1",
-    "name": "Dragon Bookend Set",
-    "category": "home-decor",
-    "price": 45,
-    "description": "Serre-livres dragons haute finition en PLA.",
-    "badge": "popular",
-    "featured": true
-  },
-  {
     "id": "2",
     "name": "Gaming Controller Stand",
     "category": "gaming",
@@ -169,5 +160,14 @@
     "description": "Scannez le code avec votre téléphone pour lancer votre chanson.",
     "badge": "sale",
     "featured": false
+  },
+  {
+    "id": "1",
+    "name": "Dragon Bookend Set",
+    "category": "home-decor",
+    "price": 45,
+    "description": "Serre-livres dragons haute finition en PLA.",
+    "badge": "popular",
+    "featured": true
   }
 ]
