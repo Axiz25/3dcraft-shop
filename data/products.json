@@ -1,14 +1,5 @@
 [
   {
-    "id": "14",
-    "name": "Jauge de Filetage & Calibre d'Angle 3D",
-    "category": "tools",
-    "price": 14,
-    "description": "Outil de mesure rapide et précis pour atelier et bricolage.",
-    "badge": "",
-    "featured": false
-  },
-  {
     "id": "15",
     "name": "Lithophanie Cœur Lumineux Personnalisé",
     "category": "gifts",
@@ -169,5 +160,14 @@
     "description": "Support magnétique robuste pour 24 embouts de précision.",
     "badge": "new",
     "featured": true
+  },
+  {
+    "id": "14",
+    "name": "Jauge de Filetage & Calibre d'Angle 3D",
+    "category": "tools",
+    "price": 14,
+    "description": "Outil de mesure rapide et précis pour atelier et bricolage.",
+    "badge": "",
+    "featured": false
   }
 ]
