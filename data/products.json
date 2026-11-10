@@ -1,14 +1,5 @@
 [
   {
-    "id": "17",
-    "name": "Porte-clés Prénom Bicolore Personnalisé",
-    "category": "keychains",
-    "price": 12,
-    "description": "Prénom en relief 3D bicolore avec anneau métallique renforcé.",
-    "badge": "popular",
-    "featured": true
-  },
-  {
     "id": "18",
     "name": "Porte-clés Logo Voiture / Marque Custom",
     "category": "keychains",
@@ -169,5 +160,14 @@
     "description": "Boîte surprise avec combinaison rotative mécanique.",
     "badge": "new",
     "featured": false
+  },
+  {
+    "id": "17",
+    "name": "Porte-clés Prénom Bicolore Personnalisé",
+    "category": "keychains",
+    "price": 12,
+    "description": "Prénom en relief 3D bicolore avec anneau métallique renforcé.",
+    "badge": "popular",
+    "featured": true
   }
 ]
