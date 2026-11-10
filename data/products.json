@@ -1,14 +1,5 @@
 [
   {
-    "id": "2",
-    "name": "Gaming Controller Stand",
-    "category": "gaming",
-    "price": 28,
-    "description": "Support universel manettes PS5, Xbox et Switch.",
-    "badge": "new",
-    "featured": true
-  },
-  {
     "id": "3",
     "name": "Figurine Anime Guerrier",
     "category": "anime",
@@ -168,6 +159,15 @@
     "price": 45,
     "description": "Serre-livres dragons haute finition en PLA.",
     "badge": "popular",
+    "featured": true
+  },
+  {
+    "id": "2",
+    "name": "Gaming Controller Stand",
+    "category": "gaming",
+    "price": 28,
+    "description": "Support universel manettes PS5, Xbox et Switch.",
+    "badge": "new",
     "featured": true
   }
 ]
