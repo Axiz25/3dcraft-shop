@@ -156,7 +156,7 @@
             <a href="#services" class="btn btn-outline">Nos Services</a>
           </div>
           <div class="hero-stats">
-            <div><div class="stat-num" id="statTotalProds">19+</div><div class="stat-lbl">Produits</div></div>
+            <div><div class="stat-num" id="statTotalProds">0</div><div class="stat-lbl">Produits</div></div>
             <div><div class="stat-num">8</div><div class="stat-lbl">Catégories</div></div>
             <div><div class="stat-num">100%</div><div class="stat-lbl">Sur Mesure</div></div>
           </div>
@@ -491,14 +491,19 @@
 
     function loadHome(){
       const all = Store.getAll();
-      document.getElementById('statTotalProds').textContent = all.length + '+';
+      document.getElementById('statTotalProds').textContent = all.length;
       Object.keys(CATS).forEach(k => {
         const count = all.filter(p => p.category === k).length;
         const el = document.getElementById('count-' + k);
         if(el) el.textContent = `${count} article${count>1?'s':''}`;
       });
       const feat = all.filter(p => p.featured);
-      document.getElementById('featuredGrid').innerHTML = feat.map((p, i) => cardHTML(p, i)).join('');
+      const featGrid = document.getElementById('featuredGrid');
+      if (feat.length > 0) {
+        featGrid.innerHTML = feat.map((p, i) => cardHTML(p, i)).join('');
+      } else {
+        featGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; background: #fff; border: 1px dashed var(--border); border-radius: var(--radius-lg);"><div style="font-size: 2.2rem; margin-bottom: 10px;">📦</div><h3 style="font-size: 1.1rem; font-weight: 800; color: var(--text); margin-bottom: 6px;">Aucun produit pour le moment</h3><p style="color: var(--text-muted); font-size: 0.88rem; max-width: 440px; margin: 0 auto 16px;">Ajoutez vos créations depuis l\'espace d\'administration pour les afficher ici.</p><a href="admin.html" class="btn btn-primary btn-sm">➕ Espace Admin</a></div>';
+      }
     }
 
     window.addEventListener('hashchange', () => {
