@@ -1,14 +1,5 @@
 [
   {
-    "id": "18",
-    "name": "Porte-clés Logo Voiture / Marque Custom",
-    "category": "keychains",
-    "price": 15,
-    "description": "Emblème automobile ou marque préférée en relief haute précision.",
-    "badge": "new",
-    "featured": true
-  },
-  {
     "id": "19",
     "name": "Porte-clés Code Spotify Scannable",
     "category": "keychains",
@@ -168,6 +159,15 @@
     "price": 12,
     "description": "Prénom en relief 3D bicolore avec anneau métallique renforcé.",
     "badge": "popular",
+    "featured": true
+  },
+  {
+    "id": "18",
+    "name": "Porte-clés Logo Voiture / Marque Custom",
+    "category": "keychains",
+    "price": 15,
+    "description": "Emblème automobile ou marque préférée en relief haute précision.",
+    "badge": "new",
     "featured": true
   }
 ]
