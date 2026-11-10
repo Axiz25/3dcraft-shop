@@ -1,14 +1,5 @@
 [
   {
-    "id": "7",
-    "name": "Support Mural Casque Gamer",
-    "category": "gaming",
-    "price": 15,
-    "description": "Accroche murale solide avec passe-câbles.",
-    "badge": "",
-    "featured": false
-  },
-  {
     "id": "8",
     "name": "Pack 4 Chibi Collectibles",
     "category": "anime",
@@ -169,5 +160,14 @@
     "description": "Design torsadé minimaliste pour fleurs et déco.",
     "badge": "sale",
     "featured": true
+  },
+  {
+    "id": "7",
+    "name": "Support Mural Casque Gamer",
+    "category": "gaming",
+    "price": 15,
+    "description": "Accroche murale solide avec passe-câbles.",
+    "badge": "",
+    "featured": false
   }
 ]
