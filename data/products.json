@@ -1,14 +1,5 @@
 [
   {
-    "id": "4",
-    "name": "Robot Articulé Flexible",
-    "category": "toys",
-    "price": 22,
-    "description": "Jouet print-in-place articulé toutes directions.",
-    "badge": "new",
-    "featured": true
-  },
-  {
     "id": "5",
     "name": "Support Smartphone Bureau",
     "category": "accessories",
@@ -168,6 +159,15 @@
     "price": 65,
     "description": "Sculpture détaillée peinte avec finitions lisses.",
     "badge": "popular",
+    "featured": true
+  },
+  {
+    "id": "4",
+    "name": "Robot Articulé Flexible",
+    "category": "toys",
+    "price": 22,
+    "description": "Jouet print-in-place articulé toutes directions.",
+    "badge": "new",
     "featured": true
   }
 ]
