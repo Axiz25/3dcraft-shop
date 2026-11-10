@@ -1,5 +1,14 @@
 [
   {
+    "id": "12",
+    "name": "Touche Clavier Artisanale",
+    "category": "gaming",
+    "price": 32,
+    "description": "Keycap custom pour claviers mécaniques.",
+    "badge": "",
+    "featured": true
+  },
+  {
     "id": "13",
     "name": "Organiseur d'Embouts Hex & Tournevis",
     "category": "tools",
@@ -159,15 +168,6 @@
     "price": 55,
     "description": "Sphère lunaire lumineuse avec socle bois.",
     "badge": "new",
-    "featured": true
-  },
-  {
-    "id": "12",
-    "name": "Touche Clavier Artisanale",
-    "category": "gaming",
-    "price": 32,
-    "description": "Keycap custom pour claviers mécaniques.",
-    "badge": "",
     "featured": true
   }
 ]
