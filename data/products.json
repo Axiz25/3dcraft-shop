@@ -1,14 +1,5 @@
 [
   {
-    "id": "8",
-    "name": "Pack 4 Chibi Collectibles",
-    "category": "anime",
-    "price": 42,
-    "description": "Collection de 4 mini personnages pour bureau.",
-    "badge": "new",
-    "featured": false
-  },
-  {
     "id": "9",
     "name": "Dosaure Articulé Flexi-Rex",
     "category": "toys",
@@ -168,6 +159,15 @@
     "price": 15,
     "description": "Accroche murale solide avec passe-câbles.",
     "badge": "",
+    "featured": false
+  },
+  {
+    "id": "8",
+    "name": "Pack 4 Chibi Collectibles",
+    "category": "anime",
+    "price": 42,
+    "description": "Collection de 4 mini personnages pour bureau.",
+    "badge": "new",
     "featured": false
   }
 ]
