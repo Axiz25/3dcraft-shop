@@ -1,9 +1,30 @@
 const Store = {
   KEY: '3dcraft_products',
   async loadRemote() {
+    // 1. Essai via GitHub API directe (temps réel immédiat sans cache CDN)
     try {
-      const url = 'https://raw.githubusercontent.com/Axiz25/3dcraft-shop/main/data/products.json?t=' + Date.now();
-      const res = await fetch(url);
+      const apiRes = await fetch('https://api.github.com/repos/Axiz25/3dcraft-shop/contents/data/products.json', {
+        headers: { 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (apiRes.ok) {
+        const data = await apiRes.json();
+        if (data && data.content) {
+          const decoded = decodeURIComponent(escape(atob(data.content.replace(/\s/g, ''))));
+          const list = JSON.parse(decoded);
+          if (Array.isArray(list) && list.length > 0) {
+            this.save(list);
+            return list;
+          }
+        }
+      }
+    } catch(e) {
+      console.warn('API fetch fallback to raw', e);
+    }
+
+    // 2. Secours via raw.githubusercontent.com avec brise-cache
+    try {
+      const rawUrl = 'https://raw.githubusercontent.com/Axiz25/3dcraft-shop/main/data/products.json?t=' + Date.now();
+      const res = await fetch(rawUrl);
       if (res.ok) {
         const remote = await res.json();
         if (Array.isArray(remote) && remote.length > 0) {
