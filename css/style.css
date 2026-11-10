@@ -811,11 +811,7 @@ input, textarea, select {
   color: var(--primary);
   font-weight: 700;
 }
-  border-radius: 50px;
-  font-size: 0.68rem;
-  color: var(--primary);
-  font-weight: 700;
-}
+  
 
 /* ---------- Products Grid ---------- */
 .products-section {
