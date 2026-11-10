@@ -1,14 +1,5 @@
 [
   {
-    "id": "6",
-    "name": "Vase Géométrique Moderne",
-    "category": "home-decor",
-    "price": 35,
-    "description": "Design torsadé minimaliste pour fleurs et déco.",
-    "badge": "sale",
-    "featured": true
-  },
-  {
     "id": "7",
     "name": "Support Mural Casque Gamer",
     "category": "gaming",
@@ -168,6 +159,15 @@
     "price": 18,
     "description": "Support réglable avec passage de câble de charge.",
     "badge": "",
+    "featured": true
+  },
+  {
+    "id": "6",
+    "name": "Vase Géométrique Moderne",
+    "category": "home-decor",
+    "price": 35,
+    "description": "Design torsadé minimaliste pour fleurs et déco.",
+    "badge": "sale",
     "featured": true
   }
 ]
