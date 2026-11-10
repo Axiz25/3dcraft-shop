@@ -1,14 +1,5 @@
 [
   {
-    "id": "16",
-    "name": "Boîte Cryptex Mécanique à Code",
-    "category": "gifts",
-    "price": 38,
-    "description": "Boîte surprise avec combinaison rotative mécanique.",
-    "badge": "new",
-    "featured": false
-  },
-  {
     "id": "17",
     "name": "Porte-clés Prénom Bicolore Personnalisé",
     "category": "keychains",
@@ -169,5 +160,14 @@
     "description": "Photo personnelle révélée en relief sous la lumière LED.",
     "badge": "popular",
     "featured": true
+  },
+  {
+    "id": "16",
+    "name": "Boîte Cryptex Mécanique à Code",
+    "category": "gifts",
+    "price": 38,
+    "description": "Boîte surprise avec combinaison rotative mécanique.",
+    "badge": "new",
+    "featured": false
   }
 ]
