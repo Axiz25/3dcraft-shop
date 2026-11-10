@@ -1,14 +1,5 @@
 [
   {
-    "id": "11",
-    "name": "Lampe Lune Lithophanie",
-    "category": "home-decor",
-    "price": 55,
-    "description": "Sphère lunaire lumineuse avec socle bois.",
-    "badge": "new",
-    "featured": true
-  },
-  {
     "id": "12",
     "name": "Touche Clavier Artisanale",
     "category": "gaming",
@@ -169,5 +160,14 @@
     "description": "Pack de clips magnétiques pour bureau propre.",
     "badge": "",
     "featured": false
+  },
+  {
+    "id": "11",
+    "name": "Lampe Lune Lithophanie",
+    "category": "home-decor",
+    "price": 55,
+    "description": "Sphère lunaire lumineuse avec socle bois.",
+    "badge": "new",
+    "featured": true
   }
 ]
