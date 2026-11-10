@@ -1,14 +1,5 @@
 [
   {
-    "id": "15",
-    "name": "Lithophanie Cœur Lumineux Personnalisé",
-    "category": "gifts",
-    "price": 49,
-    "description": "Photo personnelle révélée en relief sous la lumière LED.",
-    "badge": "popular",
-    "featured": true
-  },
-  {
     "id": "16",
     "name": "Boîte Cryptex Mécanique à Code",
     "category": "gifts",
@@ -169,5 +160,14 @@
     "description": "Outil de mesure rapide et précis pour atelier et bricolage.",
     "badge": "",
     "featured": false
+  },
+  {
+    "id": "15",
+    "name": "Lithophanie Cœur Lumineux Personnalisé",
+    "category": "gifts",
+    "price": 49,
+    "description": "Photo personnelle révélée en relief sous la lumière LED.",
+    "badge": "popular",
+    "featured": true
   }
 ]
