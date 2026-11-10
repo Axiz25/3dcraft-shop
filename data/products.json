@@ -1,14 +1,5 @@
 [
   {
-    "id": "9",
-    "name": "Dosaure Articulé Flexi-Rex",
-    "category": "toys",
-    "price": 12,
-    "description": "Dino flexible très populaire et anti-stress.",
-    "badge": "popular",
-    "featured": false
-  },
-  {
     "id": "10",
     "name": "Organiseur de Câbles Magnétique",
     "category": "accessories",
@@ -168,6 +159,15 @@
     "price": 42,
     "description": "Collection de 4 mini personnages pour bureau.",
     "badge": "new",
+    "featured": false
+  },
+  {
+    "id": "9",
+    "name": "Dosaure Articulé Flexi-Rex",
+    "category": "toys",
+    "price": 12,
+    "description": "Dino flexible très populaire et anti-stress.",
+    "badge": "popular",
     "featured": false
   }
 ]
