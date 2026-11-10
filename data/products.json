@@ -1,14 +1,5 @@
 [
   {
-    "id": "5",
-    "name": "Support Smartphone Bureau",
-    "category": "accessories",
-    "price": 18,
-    "description": "Support réglable avec passage de câble de charge.",
-    "badge": "",
-    "featured": true
-  },
-  {
     "id": "6",
     "name": "Vase Géométrique Moderne",
     "category": "home-decor",
@@ -168,6 +159,15 @@
     "price": 22,
     "description": "Jouet print-in-place articulé toutes directions.",
     "badge": "new",
+    "featured": true
+  },
+  {
+    "id": "5",
+    "name": "Support Smartphone Bureau",
+    "category": "accessories",
+    "price": 18,
+    "description": "Support réglable avec passage de câble de charge.",
+    "badge": "",
     "featured": true
   }
 ]
