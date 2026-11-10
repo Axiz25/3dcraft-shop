@@ -1,14 +1,5 @@
 [
   {
-    "id": "13",
-    "name": "Organiseur d'Embouts Hex & Tournevis",
-    "category": "tools",
-    "price": 18,
-    "description": "Support magnétique robuste pour 24 embouts de précision.",
-    "badge": "new",
-    "featured": true
-  },
-  {
     "id": "14",
     "name": "Jauge de Filetage & Calibre d'Angle 3D",
     "category": "tools",
@@ -168,6 +159,15 @@
     "price": 32,
     "description": "Keycap custom pour claviers mécaniques.",
     "badge": "",
+    "featured": true
+  },
+  {
+    "id": "13",
+    "name": "Organiseur d'Embouts Hex & Tournevis",
+    "category": "tools",
+    "price": 18,
+    "description": "Support magnétique robuste pour 24 embouts de précision.",
+    "badge": "new",
     "featured": true
   }
 ]
