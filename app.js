@@ -1,5 +1,6 @@
 const Store = {
   KEY: '3dcraft_products',
+  CLEARED_FLAG: '3dcraft_mock_cleared_v2',
   async loadRemote() {
     // 1. Essai via GitHub API directe (temps réel immédiat sans cache CDN)
     try {
@@ -11,7 +12,7 @@ const Store = {
         if (data && data.content) {
           const decoded = decodeURIComponent(escape(atob(data.content.replace(/\s/g, ''))));
           const list = JSON.parse(decoded);
-          if (Array.isArray(list) && list.length > 0) {
+          if (Array.isArray(list)) {
             this.save(list);
             return list;
           }
@@ -27,7 +28,7 @@ const Store = {
       const res = await fetch(rawUrl);
       if (res.ok) {
         const remote = await res.json();
-        if (Array.isArray(remote) && remote.length > 0) {
+        if (Array.isArray(remote)) {
           this.save(remote);
           return remote;
         }
@@ -38,23 +39,23 @@ const Store = {
     return this.getAll();
   },
   getAll() {
+    // Si l'ancien cache local contient les produits démo, on le purge
+    if (!localStorage.getItem(this.CLEARED_FLAG)) {
+      localStorage.setItem(this.KEY, '[]');
+      localStorage.setItem(this.CLEARED_FLAG, 'true');
+      return [];
+    }
     const d = localStorage.getItem(this.KEY);
-    if (!d) return this.init();
-    let prods = JSON.parse(d);
-    // Assurer que les nouveaux produits de catégories sont présents
-    const defaults = this.getDefaults();
-    let modified = false;
-    defaults.forEach(def => {
-      if (!prods.some(p => p.id === def.id)) {
-        prods.push(def);
-        modified = true;
-      }
-    });
-    if (modified) this.save(prods);
-    return prods;
+    if (!d) return [];
+    try {
+      return JSON.parse(d);
+    } catch(e) {
+      return [];
+    }
   },
   save(p) {
-    localStorage.setItem(this.KEY, JSON.stringify(p));
+    localStorage.setItem(this.KEY, JSON.stringify(p || []));
+    localStorage.setItem(this.CLEARED_FLAG, 'true');
   },
   add(p) {
     const l = this.getAll();
@@ -79,33 +80,11 @@ const Store = {
     return this.getAll().filter(p => p.category === c);
   },
   getDefaults() {
-    return [
-      { id: '1', name: 'Dragon Bookend Set', category: 'home-decor', price: 45, description: 'Serre-livres dragons haute finition en PLA.', badge: 'popular', featured: true },
-      { id: '2', name: 'Gaming Controller Stand', category: 'gaming', price: 28, description: 'Support universel manettes PS5, Xbox et Switch.', badge: 'new', featured: true },
-      { id: '3', name: 'Figurine Anime Guerrier', category: 'anime', price: 65, description: 'Sculpture détaillée peinte avec finitions lisses.', badge: 'popular', featured: true },
-      { id: '4', name: 'Robot Articulé Flexible', category: 'toys', price: 22, description: 'Jouet print-in-place articulé toutes directions.', badge: 'new', featured: true },
-      { id: '5', name: 'Support Smartphone Bureau', category: 'accessories', price: 18, description: 'Support réglable avec passage de câble de charge.', badge: '', featured: true },
-      { id: '6', name: 'Vase Géométrique Moderne', category: 'home-decor', price: 35, description: 'Design torsadé minimaliste pour fleurs et déco.', badge: 'sale', featured: true },
-      { id: '7', name: 'Support Mural Casque Gamer', category: 'gaming', price: 15, description: 'Accroche murale solide avec passe-câbles.', badge: '', featured: false },
-      { id: '8', name: 'Pack 4 Chibi Collectibles', category: 'anime', price: 42, description: 'Collection de 4 mini personnages pour bureau.', badge: 'new', featured: false },
-      { id: '9', name: 'Dosaure Articulé Flexi-Rex', category: 'toys', price: 12, description: 'Dino flexible très populaire et anti-stress.', badge: 'popular', featured: false },
-      { id: '10', name: 'Organiseur de Câbles Magnétique', category: 'accessories', price: 10, description: 'Pack de clips magnétiques pour bureau propre.', badge: '', featured: false },
-      { id: '11', name: 'Lampe Lune Lithophanie', category: 'home-decor', price: 55, description: 'Sphère lunaire lumineuse avec socle bois.', badge: 'new', featured: true },
-      { id: '12', name: 'Touche Clavier Artisanale', category: 'gaming', price: 32, description: 'Keycap custom pour claviers mécaniques.', badge: '', featured: true },
-      // NOUVELLES CATÉGORIES :
-      { id: '13', name: 'Organiseur d\'Embouts Hex & Tournevis', category: 'tools', price: 18, description: 'Support magnétique robuste pour 24 embouts de précision.', badge: 'new', featured: true },
-      { id: '14', name: 'Jauge de Filetage & Calibre d\'Angle 3D', category: 'tools', price: 14, description: 'Outil de mesure rapide et précis pour atelier et bricolage.', badge: '', featured: false },
-      { id: '15', name: 'Lithophanie Cœur Lumineux Personnalisé', category: 'gifts', price: 49, description: 'Photo personnelle révélée en relief sous la lumière LED.', badge: 'popular', featured: true },
-      { id: '16', name: 'Boîte Cryptex Mécanique à Code', category: 'gifts', price: 38, description: 'Boîte surprise avec combinaison rotative mécanique.', badge: 'new', featured: false },
-      { id: '17', name: 'Porte-clés Prénom Bicolore Personnalisé', category: 'keychains', price: 12, description: 'Prénom en relief 3D bicolore avec anneau métallique renforcé.', badge: 'popular', featured: true },
-      { id: '18', name: 'Porte-clés Logo Voiture / Marque Custom', category: 'keychains', price: 15, description: 'Emblème automobile ou marque préférée en relief haute précision.', badge: 'new', featured: true },
-      { id: '19', name: 'Porte-clés Code Spotify Scannable', category: 'keychains', price: 14, description: 'Scannez le code avec votre téléphone pour lancer votre chanson.', badge: 'sale', featured: false }
-    ];
+    return [];
   },
   init() {
-    const d = this.getDefaults();
-    this.save(d);
-    return d;
+    this.save([]);
+    return [];
   }
 };
 
