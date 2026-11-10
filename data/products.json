@@ -1,12 +1,13 @@
 [
   {
     "id": "11",
-    "name": "Lampe Lune Lithophanie",
-    "category": "home-decor",
+    "name": "Kabbi",
+    "category": "toys",
     "price": 55,
     "description": "Sphère lunaire lumineuse avec socle bois.",
     "badge": "new",
-    "featured": true
+    "featured": true,
+    "image": ""
   },
   {
     "id": "12",
