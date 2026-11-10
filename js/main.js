@@ -9,6 +9,27 @@ const ProductStore = {
   STORAGE_KEY: '3dcraft_products',
 
   async loadRemote() {
+    // 1. Try real-time GitHub API (instant, no cache)
+    try {
+      const apiRes = await fetch('https://api.github.com/repos/Axiz25/3dcraft-shop/contents/data/products.json', {
+        headers: { 'Accept': 'application/vnd.github.v3+json' }
+      });
+      if (apiRes.ok) {
+        const data = await apiRes.json();
+        if (data && data.content) {
+          const decoded = decodeURIComponent(escape(atob(data.content.replace(/\s/g, ''))));
+          const list = JSON.parse(decoded);
+          if (Array.isArray(list) && list.length > 0) {
+            this.save(list);
+            return list;
+          }
+        }
+      }
+    } catch(e) {
+      console.warn('API fetch fallback to raw', e);
+    }
+
+    // 2. Fallback to raw.githubusercontent.com
     try {
       const url = 'https://raw.githubusercontent.com/Axiz25/3dcraft-shop/main/data/products.json?t=' + Date.now();
       const res = await fetch(url);
