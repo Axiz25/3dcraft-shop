@@ -1,14 +1,5 @@
 [
   {
-    "id": "10",
-    "name": "Organiseur de Câbles Magnétique",
-    "category": "accessories",
-    "price": 10,
-    "description": "Pack de clips magnétiques pour bureau propre.",
-    "badge": "",
-    "featured": false
-  },
-  {
     "id": "11",
     "name": "Lampe Lune Lithophanie",
     "category": "home-decor",
@@ -168,6 +159,15 @@
     "price": 12,
     "description": "Dino flexible très populaire et anti-stress.",
     "badge": "popular",
+    "featured": false
+  },
+  {
+    "id": "10",
+    "name": "Organiseur de Câbles Magnétique",
+    "category": "accessories",
+    "price": 10,
+    "description": "Pack de clips magnétiques pour bureau propre.",
+    "badge": "",
     "featured": false
   }
 ]
